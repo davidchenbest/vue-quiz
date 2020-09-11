@@ -1,0 +1,82 @@
+[
+    {
+       "question": "What property do you use to create spacing between HTML elements?",
+       "a": "margin",
+       "b": "spacing",
+       "c": "padding",
+       "d": "border",
+       "answer": "margin"
+    },
+    {
+       "question": "For users that use the tab key to navigate websites, what property shows moving from one element to another using this behavior?",
+       "a": "a:link",
+       "b": "a:active",
+       "c": "a:focus",
+       "d": "a:visited",
+       "answer": "a:focus"
+    },
+    {
+       "question": "What is the property used to set the class’s text color?",
+       "a": "text-color",
+       "b": "bold",
+       "c": "color",
+       "d": "font",
+       "answer": "color"
+    },
+    {
+       "question": "The acronym CSS stands for what?",
+       "a": "Cascading Style Sheets",
+       "b": "Carrot Sytem Style",
+       "c": "Correlated Styling System",
+       "d": "Canvas Styling System",
+       "answer": "Cascading Style Sheets"
+    },
+    {
+       "question": "What property would you use to change the list style to show roman numerals instead of normal numbers?",
+       "a": "list-style-type:upper-roman;",
+       "b": "list-type:roman;",
+       "c": "list-bullet-type:roman-numerals;",
+       "d": "list-style:roman;",
+       "answer": "list-style-type:upper-roman;"
+    },
+    {
+       "question": "What property do you use to set the background color of an image?",
+       "a": "color",
+       "b": "background-color",
+       "c": "length",
+       "d": "color:background",
+       "answer": "background-color"
+    },
+    {
+       "question": "What property would you use to create space between the element’s border and inner content?",
+       "a": "margin",
+       "b": "spacing",
+       "c": "padding",
+       "d": "border",
+       "answer": "padding"
+    },
+    {
+       "question": "In what way can you NOT reference CSS?",
+       "a": "Inline Styling",
+       "b": "Internal Style Sheet",
+       "c": "External Style Sheet",
+       "d": "All three are correct",
+       "answer": "All three are correct"
+    },
+    {
+       "question": "What property can you use to set the spacing in between lines of text?",
+       "a": "line-spacing",
+       "b": "line-height",
+       "c": "spacing",
+       "d": "letter-spacing",
+       "answer": "line-height"
+    },
+    {
+       "question": "What is the worst way to style an element using CSS?",
+       "a": "Internal",
+       "b": "Inline Styling",
+       "c": "Internal Style Sheet",
+       "d": "All three are great ways to reference CSS",
+       "answer": "Inline Styling"
+    }
+ ]

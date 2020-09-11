@@ -6,9 +6,9 @@
         <input type="radio" :name='id' :value="question.b" @click="choose"><label>{{question.b}}</label><br>
         <input type="radio" :name='id' :value="question.c" @click="choose"><label>{{question.c}}</label><br>
         <input type="radio" :name='id' :value="question.d" @click="choose"><label>{{question.d}}</label>
-        <span :class="{display:uncheck}">Unanswered</span>
-        <span :class="{display:wrong}">Wrong</span>
-        <span :class="{display:correct}">Correct</span>
+        <span :class="{display:uncheck}" >Unanswered</span>
+        <span :class="{display:wrong}" style="color:red">Wrong</span>
+        <span :class="{display:correct}" style="color:green">Correct</span>
     </div>
 </template>
 
@@ -54,16 +54,34 @@ export default {
 }
 </script>
 <style scoped>
-div{
-    margin:10px;
-    padding:10px;
-    border: 1px solid black;
+p{
+    margin-bottom: 10px;
 }
-    .uncheck, .wrong{
+
+input{
+    margin-left: 30px;
+    
+}
+label{
+    margin: 5px;
+    
+}
+div{
+    padding: 20px;
+    
+    border: 2px solid rgba(128, 128, 128, 0.534);
+    border-radius: 5px;
+    margin: auto;
+    width:65%;
+}
+    .wrong{
         border: 3px solid red;
     }
+    .uncheck{
+        border: 3px solid rgb(218, 218, 27);
+    }
     .correct{
-        border: 3px solid green;
+        border: 3px solid lightgreen;
     }
     span{
         display:none;
@@ -74,5 +92,19 @@ div{
         display:inline-block;
     }
     
-    
+@media only screen and (max-width: 1030px) {
+    div{
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    div{
+        width: 300px;
+        
+        
+        
+    }
+}
+
 </style>
