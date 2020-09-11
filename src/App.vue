@@ -1,14 +1,13 @@
 <template>
   <div >
     <template v-for="(q,index) in questions" >
-      <div :class='{correct:answer[index],wrong:wrong[index]}' :key='index'>
+      
          
-        <card  :question="q" :id='index' v-on:answer='updateAnswer($event)' :checklist='result'></card>
-        <!-- <p :class='{display:!wrong[index]}'>Wrong{{wrong[index]}}</p> -->
-      </div>
+      <card :key='index' :question="q" :id='index' v-on:answer='updateAnswer($event)' :error='error' ></card>
+        
     </template>
     <button  @click="submit">Submit</button>
-    <p>{{error}}</p>
+    <p>{{msg}}</p>
   </div>
 </template>
 
@@ -21,31 +20,27 @@ export default {
   },
   methods:{
     submit:function(){
-      this.answer.forEach((item,i)=>{
-        if(item === null) this.unanswered.push(i);        
-        else if(item == this.questions[i].answer ){
-          this.result[i] =true
-        }
-        else  this.result[i] =false
+      this.msg=''
+      this.error.forEach((item)=>{
+        if(item.checked ==false) {this.msg = 'unfinshed'}
       })
-      if(this.unanswered.length > 0) {
-        this.error = 'not finished'
-        this.unanswered=[]
-      }
-      else {
-        this.error=''
-        //console.log(this.result);
-        }
+        this.error=[...this.error]
       
-      this.result=[...this.result]
+      if(this.msg.length==0){
+        this.error.forEach((item,index)=>{
+          if(this.answer[index]==false) item.wrong=true
+          else if(this.answer[index]==true) item.correct=true
+        })
+      }
+      
     },
     updateAnswer:function(a){
-      
+      this.error[a.index].checked=true;
       if(this.questions[a.index].answer == a.answer){
         this.answer[a.index]=true
       }
       else this.answer[a.index]=false
-      console.log(this.answer);
+      
     }
   },
   data:function(){
@@ -53,33 +48,25 @@ export default {
       questions:[
         {question:'what is 5+5?', a:1, b:2, c:3, d:10, answer:10 },
         {question:'what is 5+6?', a:1, b:2, c:3, d:11, answer:11 }
+        
       ],
       answer:[],
-      unanswered:[],
-      result:[],
-      wrong:[],
-      error:'',
+      error:[],
+      msg:'',
       
-      
+
     }
   },
   mounted:function(){
     for(let i=0; i< this.questions.length; i++){
-      this.answer[i]=null;
-      this.wrong[i]=null;
+      this.answer[i]=null
+      this.error[i] = { wrong:null, checked:false, correct:null}
     }
+    
   }
 }
 </script>
 
 <style>
-  .correct{
-    border: 3px solid green;
-  }
-  .wrong{
-    background-color: red;
-  }
-  .display{
-    display:none;
-  }
+  
 </style>
