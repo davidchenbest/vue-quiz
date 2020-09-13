@@ -1,11 +1,11 @@
 <template>
-    <div :class="{uncheck, correct,wrong}">
+    <div :class="{uncheck, correct,wrong}" id='container'>
         <span>{{error[this.id]}}</span>
         <p>{{id+1}}. {{question.question}}</p>
-        <input type="radio" :name='id' :value="question.a" @click="choose"><label>{{question.a}}</label><br>
-        <input type="radio" :name='id' :value="question.b" @click="choose"><label>{{question.b}}</label><br>
-        <input type="radio" :name='id' :value="question.c" @click="choose"><label>{{question.c}}</label><br>
-        <input type="radio" :name='id' :value="question.d" @click="choose"><label>{{question.d}}</label>
+        <Option type="radio" :name='id' :value="question.a" v-on:choose='updateChoose($event)' :correctAnswer='correctAnswer'></Option>
+        <Option type="radio" :name='id' :value="question.b" v-on:choose='updateChoose($event)' :correctAnswer='correctAnswer'></Option>
+        <Option type="radio" :name='id' :value="question.c" v-on:choose='updateChoose($event)' :correctAnswer='correctAnswer'></Option>
+        <Option type="radio" :name='id' :value="question.d" v-on:choose='updateChoose($event)' :correctAnswer='correctAnswer'></Option>
         <span :class="{display:uncheck}" >Unanswered</span>
         <span :class="{display:wrong}" style="color:red">Wrong</span>
         <span :class="{display:correct}" style="color:green">Correct</span>
@@ -13,8 +13,12 @@
 </template>
 
 <script>
+import Option from './Option.vue'
 export default {
-    props:['question','id',"error"],
+    props:['question','id',"error", 'correctAnswer'],
+    components:{
+        Option
+    },
     data () {
         return {
             answer: null,
@@ -24,10 +28,10 @@ export default {
         }   
     },
     methods:{
-        choose:function(e){
-            this.answer = e.target.value
-            this.$emit('answer', {index:e.toElement.name,answer:this.answer})
-
+        updateChoose:function(a){
+            this.$emit('answer', {index:a.index,answer:a.answer})
+            console.log(this.correctAnswer);
+            
         }
     },
     beforeUpdate:function(){
@@ -58,20 +62,18 @@ p{
     margin-bottom: 10px;
 }
 
-input{
-    margin-left: 30px;
-    
-}
+
 label{
     margin: 5px;
     
 }
-div{
+#container{
     padding: 20px;
     
     border: 2px solid rgba(128, 128, 128, 0.534);
     border-radius: 5px;
     margin: auto;
+    margin-bottom: 10px;
     width:65%;
 }
     .wrong{

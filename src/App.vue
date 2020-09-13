@@ -7,10 +7,7 @@
       <p>{{score}}%</p>
     </div>
     <template v-for="(q,index) in questions" >
-      
-         
-      <card :key='index' :question="q" :id='index' v-on:answer='updateAnswer($event)' :error='error' ></card>
-        
+      <card :key='index' :question="q" :id='index' v-on:answer='updateAnswer($event)' :error='error' :correctAnswer='{correctAnswer:q.answer, showAnswer}'></card>        
     </template>
     <button id='center'  @click="submit">Submit</button>
     <p id='msg'>{{msg}}</p>
@@ -30,15 +27,17 @@ export default {
       this.error.forEach((item)=>{
         if(item.checked ==false) {this.msg = 'Answer all before submitting'}
       })
-        this.error=[...this.error]
+        
       
       if(this.msg.length==0){
         this.error.forEach((item,index)=>{
           if(this.answer[index]==false) item.wrong=true
           else if(this.answer[index]==true) item.correct=true
           this.getScore()
+          this.showAnswer=true;
         })
       }
+      this.error=[...this.error]
       
     },
     getScore:function(){
@@ -66,7 +65,8 @@ export default {
       answer:[],
       error:[],
       msg:'',
-      score:0
+      score:0,
+      showAnswer:false
       
 
     }
